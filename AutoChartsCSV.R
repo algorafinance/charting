@@ -1,4 +1,4 @@
-# ChartsQuantmod.R, Kyle Loomis, 2017-03-05
+# AutoChartsCSV.R, Kyle Loomis, 2017-03-06
 
 # ==================================================================
 # Charting examples on quantmod: http://www.quantmod.com/examples/charting/
@@ -13,16 +13,13 @@ timeframe <- '2016-12-06::2017-03-06'
 # include importing tickers from .csv file
 # Read CSV into R. Check current working directory
 # getwd() and setwd() can be used to change directory
-# stocksCSV <- read.csv(file="Tickers/Aerospace1.csv", header=TRUE, sep=",")
-stocksCSV <- c('NVDA','SOXL','PANW','NVDA','NOW','MU','MA','GBX','ECOM','CENT','AMAT')
+stocksCSV <- read.csv(file="Tickers/Aerospace1.csv", header=TRUE, sep=",")
 
-# symbolList <- c('NVDA','AMD','MU','INTC','WDC','AMAT','MRVL')
 # symboList includes ticker strings from 1st col from .csv file
 # converts stockCSV[,1] to strings
-symbolList <- c(as.character(stocksCSV))
+symbolList <- c(as.character(stocksCSV[,1]))
 
-# symbolList <- c(as.character(stocksCSV[,1]))
-#Initialize a list to store the fetched prices
+# Initialize a list to store the fetched prices
 dataList <- list()
 #Loop through symbols, fetch prices, and store in dataList
 dataList <-lapply(symbolList, function(x) {getSymbols(x,auto.assign=FALSE)} )
@@ -32,16 +29,9 @@ names(dataList) <- symbolList
 # Pauses data retrieval to avoid Yahoo Finance shutting system down
 getSymbols(stocksCSV)
 
-getSymbols('NVDA')
-# Sys.sleep(10)
-
 # Iterates through symbolList and creates, names, and organizes charts
 for (i in symbolList) {
   pdf(file = paste0("/Users/kloomis/Desktop/Code/charting/RCharts/",i," - ",timeframe,".pdf"))
   candleChart(dataList[[i]], type = 'candles', name = paste0('Algora Finance - ',i), TA = 'addVo();addWMA();addBBands();addRSI();addMACD();addEMA();', theme = chartTheme('white'), up.col = 'green', dn.col = 'red', subset = timeframe, major.ticks = '1 hour', show.grid = TRUE)
   dev.off()
 }
-
-timeframe <- '2016-06-06::2017-03-06'
-
-candleChart(ECOM, type = 'candles', name = 'Algora Finance - ECOM', TA = 'addVo();addWMA();addBBands();addRSI();addMACD();addEMA();', theme = chartTheme('white'), up.col = 'green', dn.col = 'red', subset = timeframe, major.ticks = '1 hour', show.grid = TRUE)
