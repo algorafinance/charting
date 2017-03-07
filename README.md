@@ -42,6 +42,7 @@ getSymbols(c('NVDA','AMD'))
 chartSeries(NVDA)
 Creates candlestick stock chart
 candleChart(NVDA, type = 'candles', name = 'Algora Finance - NVDA', TA = 'addVo()', theme = chartTheme('white'), up.col = 'green', dn.col = 'red', subset = '2017--01::2017-03-03', major.ticks = '1 hour', show.grid = TRUE)
+
 Alternatively: candleChart(AMD, ...,  TA = 'addVo();addBBands()', ...)
 reChart() used to modify original chart
 addBBands(n = 5, sd = 2, ma = "SMA", draw = 'bands', on = -1)
