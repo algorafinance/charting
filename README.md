@@ -1,4 +1,4 @@
-# charting repository - created by Kyle Loomis on 2017-03-05
+# charting repository using R
 
 
 ==================================================================
