@@ -7,7 +7,7 @@ library(quantmod)
 require(quantmod)
 
 # Universal date
-timeframe <- '2017-01-01::2017-03-03'
+timeframe <- '2017-02-01::2017-03-03'
 
 # creates a list of stocks - future revisions will 
 # include importing tickers from .csv file
@@ -28,12 +28,14 @@ names(dataList) <- symbolList
 
 # Fetches and stores data from Yahoo! Finance
 # Pauses data retrieval to avoid Yahoo Finance shutting system down
-getSymbols(symbolList)
+getSymbols('NVDA')
 # Sys.sleep(10)
 
 # Iterates through symbolList and creates, names, and organizes charts
 for (i in symbolList) {
   pdf(file = paste0("/Users/kloomis/Desktop/Code/charting/RCharts/",i," - ",timeframe,".pdf"))
-  candleChart(dataList[[i]], type = 'candles', name = paste0('Algora Finance - ',i), TA = 'addVo();addWMA()', theme = chartTheme('white'), up.col = 'green', dn.col = 'red', subset = timeframe, major.ticks = '1 hour', show.grid = TRUE)
+  candleChart(dataList[[i]], type = 'candles', name = paste0('Algora Finance - ',i), TA = 'addVo();addWMA();addBBands();addRSI();addMACD();addEMA();', theme = chartTheme('white'), up.col = 'green', dn.col = 'red', subset = timeframe, major.ticks = '1 hour', show.grid = TRUE)
   dev.off()
 }
+
+#candleChart(NVDA, type = 'candles', name = 'Algora Finance - NVDA', TA = 'addVo();addWMA();addBBands();addRSI();addMACD();addEMA();', theme = chartTheme('white'), up.col = 'green', dn.col = 'red', subset = timeframe, major.ticks = '1 hour', show.grid = TRUE)
