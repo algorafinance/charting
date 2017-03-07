@@ -5,6 +5,7 @@
 ====================== Basic syntax of R =========================
 
 === Package Control ===
+
 Install packages: install.packages("~library_name~")
 Install packages from github - required only once
   1. library(devtools)
@@ -17,6 +18,7 @@ library(~libary_name~)
 Syntax description: ?~function/library_name~
 
 === syntax explanation ===
+
 Assigning a variable: x <- 6
 Combine values into vector/list: x <- c(values)
 Statistical functions: mean(x), sd(x), sum(x)
@@ -35,6 +37,7 @@ Charting examples on quantmod: http://www.quantmod.com/examples/charting/
 Imports quantmod library to retrieve stock data from Yahoo! Finance
 
 === Example of usage ===
+
 library(quantmod)
 Fetches data for the following symbols:
 getSymbols(c('NVDA','AMD'))
